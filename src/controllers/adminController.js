@@ -60,7 +60,7 @@ exports.loginAdmin = async (req, res) => {
         role: admin.role,
       },
     };
-    const token = jwt.sign(payload, config.get('jwtSecret'), { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ token });
   } catch (err) {
