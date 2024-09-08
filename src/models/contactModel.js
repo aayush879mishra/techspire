@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const inquirySchema = new mongoose.Schema({
+const contactSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -26,13 +26,9 @@ const inquirySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  status: {
-    type: String,
-    enum: ['received', 'in-progress', 'resolved', 'closed'],
-    default: 'received', // Default status of the inquiry
-  },
+ 
 });
 
-const Inquiry = mongoose.model('Inquiry', inquirySchema);
+const Contact = mongoose.model('Contact', contactSchema);
 
-module.exports = Inquiry;
+module.exports = Contact;

@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const adminController = require('../controllers/adminController');
-const authMiddleware = require('../middlewares/adminMiddleware'); // Middleware to authenticate JWT
+const { createAdmin,loginAdmin, getAdminDetails, updateAdminDetails } = require('../controllers/adminController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
-// Route to register a new admin
-router.post('/register', adminController.registerAdmin);
+// Route to recreate the admin
+router.post('/createAdmin', createAdmin);
 
-// Route to login an admin and get a JWT token
-router.post('/login', adminController.loginAdmin);
+// Route to log in as admin
+router.post('/login', loginAdmin);
 
-// Route to get admin details (protected)
-router.get('/me', authMiddleware, adminController.getAdminDetails);
+// Route to get admin details (protected route)
+router.get('/me', authMiddleware, getAdminDetails);
 
-// Route to update admin details (protected)
-router.put('/update', authMiddleware, adminController.updateAdminDetails);
+// Route to update admin details (protected route)
+router.put('/me', authMiddleware, updateAdminDetails);
 
 module.exports = router;
